@@ -1,5 +1,8 @@
 %%% -*- mode: erlang -*-
 %%%
+%%% This is the just_playing_around branch.  There isn't any
+%%% substantial change here ... just playing along with the tutorial's
+%%% lesson plan.
 
 +NAME("bertrpc_server").
 
