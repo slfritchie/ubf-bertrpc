@@ -13,6 +13,34 @@
 %% bertrpc types
 %% @TODO Define BERT-RPC 1.0 types
 
+bert_args()         = [bert_term()];
+bert_fun()          = atom();
+bert_mod()          = atom();
+
+bert_term()         = integer() |
+                      %% float() |
+                      atom() | 'foo';
+                      %% tuple(bert_term()) |
+                      %% list(bert_term());
+
+bert_call_req()     = {'call', bert_mod(), bert_fun(), bert_args()};
+bert_call_res()     = bert_call_res_ok() |
+                      bert_call_res_err();
+
+bert_call_res_ok()  = {'reply', bert_term()};
+
+%% {error, {Type, Code, Class, Detail, Backtrace}}
+%% where Type is an atom, Code is an integer, Class and Detail are a binaries, and Backtrace is a List of Binaries
+
+bert_call_res_err() = {'error', {bert_err_type(), bert_err_code(),
+                                 bert_err_class(), bert_err_detail(),
+                                 bert_err_backtrace()}};
+bert_err_type()     = atom();
+bert_err_code()     = integer();
+bert_err_class()    = binary();
+bert_err_detail()   = binary();
+bert_err_backtrace() = [binary()];
+
 %% meta types
 keepalive_req()     = keepalive;
 keepalive_res()     = ok;
@@ -30,6 +58,8 @@ contract_res()      = term().
 
 %% bertrpc methods
 %% @TODO Define BERT-RPC 1.0 methods
+
+bert_call_req()    => bert_call_res();
 
 %% meta methods
 keepalive_req()     => keepalive_res();

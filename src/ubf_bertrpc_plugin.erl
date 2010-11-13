@@ -39,6 +39,8 @@ handlerStop(_Pid, _Reason, _StateData) ->
 
 %% @doc rpc handler
 %% @TODO Implement BERT-RPC 1.0 synchronous events
+handlerRpc({call, nat, add, [X, Y]}) ->
+    {reply, X + Y};
 handlerRpc(Event) when Event==info; Event==description ->
     ?S(?MODULE:Event());
 handlerRpc(Event) when Event==keepalive ->

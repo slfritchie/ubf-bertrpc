@@ -18,6 +18,7 @@
 ###----------------------------------------------------------------------
 
 MODULES = \
+	ubf_bertrpc_cheapserver \
 	ubf_bertrpc_plugin
 
 PLUGINS = \
